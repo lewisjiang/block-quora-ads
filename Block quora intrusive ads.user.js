@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Block quora intrusive ads
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @description  I call FXXK YOU to the ads with the same format as the answers.
 // @author       Watashi
 // @match        *://www.quora.com/*
@@ -16,20 +16,24 @@
 /* eslint-env jquery */
 (function() {
     'use strict';
-    let fwords = [
-        "Ad by",
-        "Sponsored by",
-        "Promoted by"
-    ];
+    // let fwords = [
+    //     "Ad by",
+    //     "Sponsored by",
+    //     "Promoted by",
+    //     "Sponsored"
+    // ];
 
     let rm_qad = function(){
-        fwords.forEach(function(value,index,array){
-            let adstr1 = ":contains('"+ value +"')";
-            $("div.q-text.qu-dynamicFontSize--small.qu-color--gray_light.qu-passColorToLinks" + adstr1).parents("div.q-box.qu-pt--medium").remove();
-
-        });
+//         fwords.forEach(function(value,index,array){
+//             let adstr1 = ":contains('"+ value +"')";
+//             $("div.q-text.qu-dynamicFontSize--small.qu-color--gray_light.qu-passColorToLinks" + adstr1).parents("div.q-box.qu-pt--medium").remove();
+//         });
 
         //$("div.q-box.qu-mt--n_small.qu-py--tiny").parents("div.q-box.qu-pt--medium").remove();
+
+        $("div.q-box.spacing_log_question_page_ad").remove();
+        $("div.q-box.dom_annotate_ad_promoted_answer").remove();
+        $("div.q-box.dom_annotate_ad_image_ad").remove();
 
     }
     document.addEventListener('DOMNodeInserted', function() {
